@@ -9,7 +9,7 @@ class MainView(View):
     def get(self, request, *args, **kwargs):
         random_six_tours = random.sample(tours.items(), 6)
         return render(
-            request, 'index.html', context={
+            request, 'tours/index.html', context={
                 'site_title': title,
                 'site_subtitle': subtitle,
                 'site_description': description,
@@ -31,7 +31,7 @@ class DepartureView(View):
                     prices.append(tours[k]['price'])
                     nights.append(tours[k]['nights'])
             return render(
-                request, 'departure.html', context={
+                request, 'tours/departure.html', context={
                     'site_title': title,
                     'menu': departures,
                     'departure_name': departures[departure],
@@ -50,7 +50,7 @@ class TourView(View):
     def get(self, request, id, *args, **kwargs):
         if id in tours:
             return render(
-                request, 'tour.html', context={
+                request, 'tours/tour.html', context={
                     'site_title': title,
                     'menu': departures,
                     'tour_title': tours[id]['title'],
