@@ -22,11 +22,24 @@ class MainView(View):
 class DepartureView(View):
     def get(self, request, departure, *args, **kwargs):
         if departure in departures:
+            specific_tour = dict()
+            prices = list()
+            nights = list()
+            for k, v in tours.items():
+                if tours[k]['departure'] == departure:
+                    specific_tour[k] = tours[k]
+                    prices.append(tours[k]['price'])
+                    nights.append(tours[k]['nights'])
             return render(
                 request, 'departure.html', context={
                     'site_title': title,
                     'menu': departures,
-                    'departure': departures[departure],
+                    'departure_name': departures[departure],
+                    'specific_tour': specific_tour,
+                    'min_nights': min(nights),
+                    'max_nights': max(nights),
+                    'min_price': min(prices),
+                    'max_price': max(prices),
                 }
             )
         else:
