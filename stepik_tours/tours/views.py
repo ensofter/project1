@@ -1,8 +1,9 @@
+import random
+
+from django.http import Http404
 from django.shortcuts import render
 from django.views import View
 from tours.data import title, subtitle, description, departures, tours
-from django.http import Http404
-import random
 
 
 class MainView(View):
